@@ -1,0 +1,43 @@
+.background {
+    background-image: url(./images/puppyCards.png);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-attachment: fixed;
+    background-size: cover;
+    height: 100vh; /* Make sure the background takes up the whole screen height */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: rgba(255, 255, 255, 0.25  );
+    
+}
+.dark-overlay::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background-color: rgba(0, 0, 0, 0.5); /* Adjust the opacity and color as needed */
+}
+.loginContainer {
+    background-color: rgba(255, 255, 255, 0.25);
+}
+
+
+@media screen and (min-width:1280px){
+    .background {
+        background-image: none;
+    }
+
+    .dark-overlay::before {
+        display: none;
+    }
+
+    
+
+}
+
+
+
+
