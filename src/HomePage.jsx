@@ -10,17 +10,27 @@ import "./homePage.css";
 
 
 function HomePage() {
-    
     const [isImage, setIsImage] = useState(true);
-
-    const toggleFunction = () => {
-        setIsImage((prevIsImage) => !prevIsImage)
-        
-    };
-    
     const [searchTerm, setSearchTerm] = useState('');
 
     var userName = "Eva"
+
+    const toggleHamburger = () => {
+        setIsImage((prevIsImage) => !prevIsImage)
+        
+    };
+
+    const [chat, setChat] = useState(true);
+    
+    const chatOn = () => {
+        setChat(false)
+        console.log("chat on")
+    }
+
+    const chatOff = () => {
+        setChat(true)
+        console.log("chat off")
+    }
 
 
     return (
@@ -41,8 +51,8 @@ function HomePage() {
             </div>
 
 
-            <div className='flex mt-4 mr-4 absolute z-10 top-0 right-0 '>
-                <button className='hamburger lg:invisible' onClick={toggleFunction}>
+            <div className='flex mt-4 mr-4 absolute z-10 top-0 right-0 lg:invisible'>
+                <button className='hamburger' onClick={toggleHamburger}>
                     {
                         isImage ? (
                             <img src={hamburger} className='h-8' alt=""/>
@@ -99,9 +109,37 @@ function HomePage() {
                     </div>
                 </div>
 
-                <button type="button"  onClick="this.toggleFunction" className='border-1 w-14 h-14 bg-sky-400 absolute bottom-5 right-5 rounded-full lg:invisible'>
-                    <img src={messageIcon} className='m-2 h-10'/>
-                </button>
+                <div>
+                    {chat ? (
+                        <button type="button" onClick={chatOn} className='border-1 w-14 h-14 bg-sky-400 absolute bottom-5 right-5 rounded-full lg:invisible'>
+                            <img src={messageIcon} className='m-2 h-10'/>
+                        </button>
+                    ): (
+                        <button type="button" onClick={chatOff} className='border-1 w-14 h-14 bg-sky-400 absolute bottom-5 right-5 rounded-full lg:invisible'>
+                            <img src={closeIcon} className='m-2 h-10'/>
+                        </button>
+                    )}
+
+                    { !chat &&
+                        <div className="chatContainer absolute z-20 left-20 right-0 top-16 bottom-40 lg:translate-x-100">
+                            <div className='messageContainer flex flex-1 border bg-black h-full'>
+        
+                            </div>
+        
+                            <div className="textBar flex align-start">
+                                <div className="searchBar w-full flex justify-center mt-5">
+                                    <form className='flex w-full items-center'>
+                                        <input type="text" placeholder='Text Message' onChange={e => setSearchTerm(e.target.value)} 
+                                        className='w-full px-5 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring focus:border-blue-300'/>
+                                        
+                                        <button className="border w-20 rounded p-2 bg-sky-400 text-white"type='submit'>Enter</button>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    }
+                </div>
+                
             </div>
 
             {/* <footer className='py-4'>
