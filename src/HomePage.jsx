@@ -121,7 +121,7 @@ function HomePage() {
                     )}
 
                     { !chat &&
-                        <div className="chatContainer absolute z-20 left-20 right-0 top-16 bottom-40 lg:translate-x-100">
+                        <div className="chatContainer absolute z-20 left-20 right-0 top-16 bottom-40 lg:invisible">
                             <div className='messageContainer flex flex-1 border bg-black h-full'>
         
                             </div>
