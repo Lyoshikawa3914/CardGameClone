@@ -93,7 +93,7 @@ function HomePage() {
 
                 
                 <div className="chatContainer hidden lg:flex-shrink lg:flex-grow lg:block w-6/12 lg: h-6/12">
-                    <div className='messageContainer flex flex-1 border bg-black h-full'>
+                    <div className='messageContainer flex flex-1 border bg-gray-100 h-full'>
 
                     </div>
 
@@ -123,7 +123,7 @@ function HomePage() {
                     { !chat &&
                         <div className='bg-white flex rounded-lg shadow-lgjustify-center items-center z-20 h-9/12 w-10/12 border-2 absolute left-30 right-0 top-16 bottom-20 lg:invisible'>
                             <div className="chatContainer absolute  z-20 left-2 right-2 top-2 bottom-20 lg:invisible">
-                                <div className='messageContainer rounded bg-black h-full'>
+                                <div className='messageContainer rounded bg-gray-100 h-full'>
             
                                 </div>
             
