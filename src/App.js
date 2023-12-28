@@ -19,8 +19,8 @@ function App() {
   return (
     // <LandingPage/>
     // <HomePage/>
-    // <Hero/>
-    <Game/>
+    <Hero/>
+    // <Game/>
   );
 }
 
