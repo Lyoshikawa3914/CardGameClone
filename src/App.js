@@ -18,8 +18,8 @@ function App() {
 
   return (
     // <LandingPage/>
-    // <HomePage/>
-    <Hero/>
+    <HomePage/>
+    // <Hero/>
     // <Game/>
   );
 }
