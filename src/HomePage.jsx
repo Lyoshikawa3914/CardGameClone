@@ -10,7 +10,7 @@ import "./homePage.css";
 
 
 function HomePage() {
-    const [isChatImage, setIsImage] = useState(true);
+    const [isHamburgerImage, setIsImage] = useState(true);
     const [searchTerm, setSearchTerm] = useState('');
 
     var userName = "Eva"
@@ -43,9 +43,9 @@ function HomePage() {
                     </h1>
                 </div>
                 <div className='logOut self-center mr-3 invisible lg:visible'>
-                    <button >
-                        <img src={settingsIcon} className='h-10 '/>
-                           
+                    <button className='pt-2 border bg-gray-100 pb-2 pl-3 pr-3 text-xl font-mono'>
+                        {/* <img src={settingsIcon} className='h-10 '/> */}
+                        Logout 
                     </button>
                 </div>
             </div>
@@ -54,15 +54,32 @@ function HomePage() {
             <div className='flex mt-4 mr-4 absolute z-10 top-0 right-0 lg:invisible'>
                 <button className='hamburger' onClick={toggleHamburger}>
                     {
-                        isChatImage ? (
+                        isHamburgerImage ? (
                             <img src={hamburger} className='h-8' alt=""/>
                         ) : (
                             <img src={closeIcon} className='h-8' alt=""/>
                         )
                     }
-
                 </button>
             </div>
+            <div>
+                { !isHamburgerImage && 
+                    <div className='lg:invisible absolute z-30 bg-gray-200 border w-96 top-0 right-0 bottom-60 flex flex-col items-center justify-center'>
+                        <button className='hamburger fixed top-4 right-3 ' onClick={toggleHamburger}>
+                    
+                            <img src={closeIcon} className='h-8' alt=""/>
+                        
+                        </button>
+                        <h2 className='text-4xl fixed top-10'>Menu</h2>
+                        <ul className='w-full flex-col items-center space-y-8 '>
+                            <li className='text-3xl flex justify-center'>Decks</li>
+                            <li className='text-3xl flex justify-center'>Logout</li>
+                        </ul>
+                            
+                    </div>
+                }
+            </div>
+            
 
             <div className='contentContainer flex flex-row  space-x-4 justify-center mt-3 ml-5 mr-5 h-5/6'>
                 
