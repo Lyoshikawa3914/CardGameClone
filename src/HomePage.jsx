@@ -10,7 +10,7 @@ import "./homePage.css";
 
 
 function HomePage() {
-    const [isImage, setIsImage] = useState(true);
+    const [isChatImage, setIsImage] = useState(true);
     const [searchTerm, setSearchTerm] = useState('');
 
     var userName = "Eva"
@@ -54,7 +54,7 @@ function HomePage() {
             <div className='flex mt-4 mr-4 absolute z-10 top-0 right-0 lg:invisible'>
                 <button className='hamburger' onClick={toggleHamburger}>
                     {
-                        isImage ? (
+                        isChatImage ? (
                             <img src={hamburger} className='h-8' alt=""/>
                         ) : (
                             <img src={closeIcon} className='h-8' alt=""/>
