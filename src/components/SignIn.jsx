@@ -1,9 +1,12 @@
 
-import React from "react";
+import React, {useEffect} from "react";
 import GoogleButton from 'react-google-button';
 
 import {auth} from '../firebase';
-import { GoogleAuthProvider, signInWithRedirect } from "firebase/auth";
+import { GoogleAuthProvider, signInWithRedirect, getAuth, onAuthStateChanged } from "firebase/auth";
+import { useHistory } from 'react-router-dom';
+import { useAuthState } from "react-firebase-hooks/auth";
+
 
 const style = {
     wrapper: 'flex justify-center' 
@@ -12,11 +15,16 @@ const style = {
 const googleSignIn = () => {
     const provider = new GoogleAuthProvider()
     signInWithRedirect(auth, provider)
+
+    
 }
 
+    
 const SignIn = () => {
+    const [user] = useAuthState(auth)
+    console.log(user)
     return (
-        <div>
+        <div className="mt-1.5 mr-2">
             <GoogleButton onClick={googleSignIn}/>
         </div>
     )

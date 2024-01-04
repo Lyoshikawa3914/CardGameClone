@@ -4,14 +4,21 @@ import settingsIcon from "./images/icons8-settings-50.png"
 import hamburger from "./images/icons8-hamburger-menu-50.png"
 import closeIcon from "./images/icons8-close-50.png"
 import "./homePage.css";
+import LogOut from './components/LogOut';
+import SignIn from './components/SignIn';
+import {auth} from './firebase';
+import { useAuthState } from "react-firebase-hooks/auth";
 
-
+ 
 
 
 
 function HomePage() {
     const [isHamburgerImage, setIsImage] = useState(true);
     const [searchTerm, setSearchTerm] = useState('');
+
+    const [user] = useAuthState(auth)
+    console.log(user)
 
     var userName = "Eva"
 
@@ -35,19 +42,13 @@ function HomePage() {
 
     return (
         <div className="HomePage flex flex-col p-0 bg-slate-100 h-screen">
-            <div className="navbar flex justify-between 
-            w-full h-16 bg-sky-400">
+            <div className="navbar flex justify-between w-full h-16 bg-sky-400">
                 <div className="flex items-center justify-center ml-5 ">
                     <h1 className="text-3xl">
                         Card Game Sim
                     </h1>
                 </div>
-                <div className='logOut self-center mr-3 invisible lg:visible'>
-                    <button className='pt-2 border bg-gray-100 pb-2 pl-3 pr-3 text-xl font-mono'>
-                        {/* <img src={settingsIcon} className='h-10 '/> */}
-                        Logout 
-                    </button>
-                </div>
+                {user ? (<LogOut/>) : (<SignIn/>)}
             </div>
 
 
