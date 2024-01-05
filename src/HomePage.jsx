@@ -3,20 +3,23 @@ import messageIcon from "./images/icons8-message-50.png"
 import settingsIcon from "./images/icons8-settings-50.png"
 import hamburger from "./images/icons8-hamburger-menu-50.png"
 import closeIcon from "./images/icons8-close-50.png"
-import "./homePage.css";
-import LogOut from './components/LogOut';
-import SignIn from './components/SignIn';
-import {auth} from './firebase';
-import { useAuthState } from "react-firebase-hooks/auth";
 
- 
+import SignIn from './components/SignIn';
+import LogOut from './components/LogOut';
+
+import GoogleButton from 'react-google-button';
+import {auth} from './firebase';
+import { GoogleAuthProvider, signInWithRedirect } from 'firebase/auth';
+
+import "./homePage.css";
+import { useAuthState } from 'react-firebase-hooks/auth';
 
 
 
 function HomePage() {
     const [isHamburgerImage, setIsImage] = useState(true);
     const [searchTerm, setSearchTerm] = useState('');
-
+    
     const [user] = useAuthState(auth)
     console.log(user)
 
@@ -42,17 +45,20 @@ function HomePage() {
 
     return (
         <div className="HomePage flex flex-col p-0 bg-slate-100 h-screen">
-            <div className="navbar flex justify-between w-full h-16 bg-sky-400">
+            <div className="navbar flex justify-between 
+            w-full h-16 bg-sky-400">
                 <div className="flex items-center justify-center ml-5 ">
                     <h1 className="text-3xl">
                         Card Game Sim
                     </h1>
                 </div>
-                {user ? (<LogOut/>) : (<SignIn/>)}
+                <div className='logInOut self-center mr-3 invisible lg:visible'>
+                    {user ? <LogOut/> : <SignIn/>}
+                </div>
             </div>
 
 
-            <div className='flex mt-4 mr-4 absolute z-10 top-0 right-0 lg:invisible'>
+            {/* <div className='flex mt-4 mr-4 absolute z-10 top-0 right-0 lg:invisible'>
                 <button className='hamburger' onClick={toggleHamburger}>
                     {
                         isHamburgerImage ? (
@@ -62,8 +68,8 @@ function HomePage() {
                         )
                     }
                 </button>
-            </div>
-            <div>
+            </div> */}
+            {/* <div>
                 { !isHamburgerImage && 
                     <div className='lg:invisible absolute z-30 bg-gray-200 border w-96 top-0 right-0 bottom-60 flex flex-col items-center justify-center'>
                         <button className='hamburger fixed top-4 right-3 ' onClick={toggleHamburger}>
@@ -79,7 +85,7 @@ function HomePage() {
                             
                     </div>
                 }
-            </div>
+            </div> */}
             
 
             <div className='contentContainer flex flex-row  space-x-4 justify-center mt-3 ml-5 mr-5 h-5/6'>
