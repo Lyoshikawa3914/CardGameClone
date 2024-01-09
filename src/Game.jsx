@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import MemoryTracker from './MemoryTracker';
+import MemoryTracker from './components/MemoryTracker';
 
 function Game() {
     return (

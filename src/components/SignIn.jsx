@@ -24,7 +24,7 @@ const SignIn = () => {
     const [user] = useAuthState(auth)
     console.log(user)
     return (
-        <div className="mt-1.5 mr-2">
+        <div className="mr-2">
             <GoogleButton onClick={googleSignIn}/>
         </div>
     )

@@ -1,11 +1,13 @@
 import React, {useState} from 'react';
 import messageIcon from "./images/icons8-message-50.png"
+
 import settingsIcon from "./images/icons8-settings-50.png"
 import hamburger from "./images/icons8-hamburger-menu-50.png"
 import closeIcon from "./images/icons8-close-50.png"
 
 import SignIn from './components/SignIn';
 import LogOut from './components/LogOut';
+import Chat from './Chat';
 
 import GoogleButton from 'react-google-button';
 import {auth} from './firebase';
@@ -116,7 +118,7 @@ function HomePage() {
                 
                 <div className="chatContainer border hidden shadow-xl lg:flex-shrink lg:flex-grow lg:block w-6/12 lg: h-6/12">
                     <div className='messageContainer flex flex-1 border bg-white h-full'>
-
+                        <Chat/>
                     </div>
 
                     <div className="textBar flex align-start">
@@ -146,7 +148,7 @@ function HomePage() {
                         <div className='bg-white flex rounded-lg shadow-lgjustify-center items-center z-20 h-9/12 w-10/12 border-2 absolute left-30 right-0 top-16 bottom-20 lg:invisible'>
                             <div className="chatContainer absolute  z-20 left-2 right-2 top-2 bottom-20 lg:invisible">
                                 <div className='messageContainer rounded bg-gray-100 h-full'>
-            
+                                    <Chat/>
                                 </div>
             
                                 <div className="textBar flex align-start">
