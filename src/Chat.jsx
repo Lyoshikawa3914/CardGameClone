@@ -3,6 +3,7 @@ import { Message } from './components/Message';
 import { QuerySnapshot, onSnapshot } from 'firebase/firestore';
 import {db} from './firebase';
 import {query, collection, orderBy }from 'firebase/firestore';
+import { SendMessage } from './components/SendMessage';
 
 const Chat =()=> {
     const [messages, setMessages] = useState([]);
@@ -14,21 +15,21 @@ const Chat =()=> {
             let messages = []
             QuerySnapshot.forEach((doc) => {
                 messages.push({...doc.data(), id: doc.id})
-            })
+            });
             setMessages(messages)
 
-        })
+        });
         return () => unsubscribe()
-    }, [])
+    }, []);
     return (
         <div>
             <main>
                 {messages && messages.map((message) => {
-                    <Message key={message.id} message={message}/>
+                    return <Message key={message.id} message={message}/>
                 })}
                 
             </main>
-            {/* send message component */}
+            <SendMessage/>
             <span ref={scroll}></span>
         </div>
         
