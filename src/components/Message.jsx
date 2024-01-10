@@ -6,13 +6,13 @@ const style ={
     sent: `bg-[3395dff] text-white flex-row-reverse text-end flaot-right rounded-bl-full`,
     received: `bg-[#e5e5ea] text-black float-left rounded-br-full`
 }
-export const Message = () => {
+export const Message = ({message}) => {
   return (
     <div>
         <div className={style.message}>
             <p className={style.name}>Eva</p>
             <p>
-                hello  World
+                {message.text}
             </p>
         </div>
     </div>
