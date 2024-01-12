@@ -29,7 +29,7 @@ const Chat =()=> {
                 })}
                 
             </main>
-            <SendMessage/>
+                {/* <SendMessage/> */}
             <span ref={scroll}></span>
         </div>
         

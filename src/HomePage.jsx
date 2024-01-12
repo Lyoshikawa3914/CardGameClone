@@ -10,17 +10,30 @@ import LogOut from './components/LogOut';
 import Chat from './Chat';
 
 import GoogleButton from 'react-google-button';
-import {auth} from './firebase';
+import {auth, db} from './firebase';
 import { GoogleAuthProvider, signInWithRedirect } from 'firebase/auth';
 
 import "./homePage.css";
 import { useAuthState } from 'react-firebase-hooks/auth';
 
+import {addDoc, collection, serverTimestamp} from 'firebase/firestore'
+
 
 
 function HomePage() {
     const [isHamburgerImage, setIsImage] = useState(true);
-    const [searchTerm, setSearchTerm] = useState('');
+    
+    const [input, setInput] = useState('');
+    const sendMessage = async (e) => {
+        e.preventDefault()
+        const {uid, displayName} = auth.currentUser
+        await addDoc(collection(db, 'messages'), {
+            text: input,
+            name: displayName,
+            uid, 
+            timestamp: serverTimestamp()
+        })
+    }
     
     const [user] = useAuthState(auth)
     console.log(user)
@@ -102,7 +115,7 @@ function HomePage() {
                         </div>
                         
                         <form className='flex items-center pb-2 ml-1'>
-                            <input type="text" placeholder='Search' onChange={e => setSearchTerm(e.target.value)} 
+                            <input type="text" placeholder='Search'
                             className='w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring focus:border-blue-300'/>
                             
                             <button className="border rounded w-20 p-2 bg-sky-400 text-white"type='submit'>Search</button>
@@ -123,11 +136,14 @@ function HomePage() {
 
                     <div className="textBar flex align-start">
                         <div className="searchBar w-full flex justify-center mt-3 shadow-xl">
-                            <form className='flex w-full items-center shadow-lg'>
-                                <input type="text" placeholder='Text Message' onChange={e => setSearchTerm(e.target.value)} 
+                            <form className='flex w-full items-center shadow-lg' onSubmit={sendMessage}>
+                                <input type="text"
+                                value={input}
+                                placeholder='Text Message' 
+                                onChange={e => setInput(e.target.value)} 
                                 className='w-full px-5 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring focus:border-blue-300'/>
                                 
-                                <button className="border w-20 rounded p-2 bg-sky-400 text-white shadow-xl"type='submit'>Enter</button>
+                                <button className="border w-20 rounded p-2 bg-sky-400 text-white shadow-xl"type='submit'>Send</button>
                             </form>
                         </div>
                     </div>
@@ -153,11 +169,14 @@ function HomePage() {
             
                                 <div className="textBar flex align-start">
                                     <div className="searchBar w-full flex justify-center mt-5">
-                                        <form className='flex w-full items-center'>
-                                            <input type="text" placeholder='Text Message' onChange={e => setSearchTerm(e.target.value)} 
+                                        <form className='flex w-full items-center' onSubmit={sendMessage}>
+                                            <input type="text" 
+                                            placeholder='Text Message' 
+                                            value ={input} 
+                                            onChange={e => setInput(e.target.value)} 
                                             className='w-full px-5 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring focus:border-blue-300'/>
                                             
-                                            <button className="border w-20 rounded p-2 bg-sky-400 text-white"type='submit'>Enter</button>
+                                            <button className="border w-20 rounded p-2 bg-sky-400 text-white"type='submit'>Send</button>
                                         </form>
                                     </div>
                                 </div>
