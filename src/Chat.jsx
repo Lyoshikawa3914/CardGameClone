@@ -1,9 +1,9 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { Message } from './components/Message';
+import  { Message } from './components/Message';
 import { QuerySnapshot, onSnapshot } from 'firebase/firestore';
 import {db} from './firebase';
 import {query, collection, orderBy }from 'firebase/firestore';
-import { SendMessage } from './components/SendMessage';
+import SendMessage from './components/SendMessage';
 
 const Chat =()=> {
     const [messages, setMessages] = useState([]);
@@ -22,14 +22,15 @@ const Chat =()=> {
         return () => unsubscribe()
     }, []);
     return (
-        <div>
-            <main>
+        <div className="flex-grow overflow-hidden flex flex-col">
+            <main ref={scroll} style={{ overflowY: 'auto', maxHeight: '100%'}}>
                 {messages && messages.map((message) => {
                     return <Message key={message.id} message={message}/>
                 })}
                 
             </main>
-                {/* <SendMessage/> */}
+                
+                <SendMessage scroll={scroll}/>
             <span ref={scroll}></span>
         </div>
         
