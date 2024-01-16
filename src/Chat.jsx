@@ -22,17 +22,17 @@ const Chat =()=> {
         return () => unsubscribe()
     }, []);
     return (
-        <div className="flex-grow overflow-hidden flex flex-col">
-            <main ref={scroll} style={{ overflowY: 'auto', maxHeight: '100%'}}>
-                {messages && messages.map((message) => {
-                    return <Message key={message.id} message={message}/>
-                })}
-                
-            </main>
-                
-                <SendMessage scroll={scroll}/>
-            <span ref={scroll}></span>
-        </div>
+        // Update the styling in the Chat component
+<div className="flex-grow overflow-hidden flex flex-col h-full w-full">
+    <main ref={scroll} style={{ overflowY: 'auto', maxHeight: '100%' }}>
+        {messages && messages.map((message) => {
+            return <Message key={message.id} message={message} />;
+        })}
+    </main>
+    <SendMessage scroll={scroll} />
+    <span ref={scroll}></span>
+</div>
+
         
     )
 }

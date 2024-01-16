@@ -39,14 +39,8 @@ function HomePage() {
 
     const [chat, setChat] = useState(true);
     
-    const chatOn = () => {
-        setChat(false)
-        console.log("chat on")
-    }
-
-    const chatOff = () => {
-        setChat(true)
-        console.log("chat off")
+    const toggleImage = () => {
+        setChat(!chat);
     }
 
 
@@ -66,7 +60,7 @@ function HomePage() {
 
             <div className='contentContainer flex flex-row  space-x-4 justify-center mt-3 ml-5 mr-5 h-5/6'>
                 
-                <div className='usersSearchContainer bg-white rounded-lg border flex-shrink flex-grow shadow-xl pl-2 pr-2 w-5/12 lg: bg-blue-2004'>
+                <div className='usersSearchContainer bg-white rounded-lg border flex-shrink flex-grow shadow-xl pl-2 pr-2 w-full lg:bg-blue-2004 lg:w-1/3'>
                     <div className="searchBar flex flex-col flex-1">
                         <div className='userHeader text-2xl p-3 flex justify-between w-full'>
                             <h2>
@@ -89,7 +83,15 @@ function HomePage() {
 
                 </div>
 
-                <div className='messageContainer flex flex-1 border bg-white h-full'>
+                <div className='flex absolute bottom-3 right-5 bg-sky-400 rounded-full h-16 w-16 shadow-lg justify-center align-middle lg:invisible'>
+                    <button onClick={toggleImage}>
+                        {chat ? <img src={messageIcon}/> : <img src={closeIcon}/>}  
+                        
+                    </button>
+                    
+                </div>
+
+                <div className='messageContainer flex flex-1 border bg-white h-full w-0 invisible lg:visible lg:w-9/12'>
                     <Chat/>
                 </div>
             </div>

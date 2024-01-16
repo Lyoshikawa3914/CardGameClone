@@ -1,22 +1,24 @@
-// This is the styling for the messages
+import React from 'react';
+import { auth } from '../firebase';
 
-import React from 'react'
+// Updated styling for the messages
+const style = {
+  messageContainer: `flex flex-col mt-1 ml-2 mr-2`,
+  message: `shadow-xl py-2 px-3`,
+  name: `text-gray-600 text-xs mb-1`,
+  sent: `bg-blue text-white rounded-l-xl rounded-tr-xl ml-auto w-1/4 bg-sky-500`, // Use ml-auto for right alignment
+  received: `bg-[#e5e5ea] text-black rounded-r-xl rounded-tl-xl rounded-tr-xl w-1/4`
+};
 
-// original code had absolute/fixed in the "name"
-const style ={
-  container: `flex flex-col items-start m-5 w-1/3`,
-  message: `flex flex-col items-start shadow-xl py-2 px-3 bg-sky-400 mt-1 rounded-lg`, // Updated to flex-col
-  name: `text-gray-600 text-xs`,
-  sent: `bg-blue text-white flex-row-reverse text-end flaot-right rounded-bl-full`,
-  received: `bg-[#e5e5ea] text-black float-left rounded-br-full`
-}
-export const Message = ({message}) => {
+export const Message = ({ message }) => {
+  const messageClass = message.uid === auth.currentUser.uid ? `${style.sent}` : `${style.received}`;
+
   return (
-    <div className={style.container}>
-      <p className={style.name}>Eva</p>
-      <div className={style.message}>
+    <div className={style.messageContainer}>
+      <div className={`${style.message} ${messageClass}`}>
+        <p className={style.name}></p>
         <p>{message.text}</p>
       </div>
     </div>
-  )
-}
+  );
+};
