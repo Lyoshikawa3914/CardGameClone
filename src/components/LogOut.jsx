@@ -7,7 +7,7 @@ function LogOut() {
     }
 
     return (
-        <div className='logOut self-center mr-3 invisible lg:visible'>
+        <div className='logOut self-center mr-3'>
             <button onClick={() => auth.signOut()} className='pt-2 border bg-gray-100 pb-2 pl-3 pr-3 text-xl font-mono'>
                 
                 Logout 

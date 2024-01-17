@@ -19,10 +19,10 @@ export const Login = (props) => {
                 
 
                 <label htmlFor="email"className="p-4 text-2xl text-white xl:text-black">Email</label>
-                <input className="border mt-0.5 ml-3 mr-3 p-3 opacity-40 xl: opacity-100" value={email} onChange={(e) => setEmail(e.target.value)} type="email" placeholder="Email" id="email" name="email"/>
+                <input className="border mt-0.5 ml-3 mr-3 p-3 opacity-40 xl:opacity-100" value={email} onChange={(e) => setEmail(e.target.value)} type="email" placeholder="Email" id="email" name="email"/>
 
                 <label htmlFor="password" className="p-4 text-2xl text-slate-100 xl:text-black">Password</label>
-                <input className="border mt-0.5 ml-3 mr-3 p-3 opacity-40 xl: opacity-100" value="password" onChange={(e) => setPassword(e.target.value)} type="password" placeholder="password" id="password" name="password" />
+                <input className="border mt-0.5 ml-3 mr-3 p-3 opacity-40 xl:opacity-100" value="password" onChange={(e) => setPassword(e.target.value)} type="password" placeholder="password" id="password" name="password" />
 
                 <button className="mt-5 ml-3 mr-3 p-3 shadow rounded-lg bg-sky-400 text-lg font-bold text-slate-100" type="submit">Log In</button>
             </form>

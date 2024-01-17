@@ -18,12 +18,12 @@ import { useAuthState } from 'react-firebase-hooks/auth';
 
 import {addDoc, collection, serverTimestamp} from 'firebase/firestore'
 import SendMessage from './components/SendMessage';
+import OtherUsers from './components/OtherUsers';
 
 
 
 function HomePage() {
     const [isHamburgerImage, setIsImage] = useState(true);
-    
     const [input, setInput] = useState('');
     
     
@@ -32,15 +32,18 @@ function HomePage() {
 
     var userName = "Eva"
 
-    const toggleHamburger = () => {
-        setIsImage((prevIsImage) => !prevIsImage)
+    // const toggleHamburger = () => {
+    //     setIsImage((prevIsImage) => !prevIsImage)
         
-    };
+    // };
 
     const [chat, setChat] = useState(true);
+    const [chatContainer, setChatContainer] = useState(false);
     
     const toggleImage = () => {
         setChat(!chat);
+        setChatContainer(!chatContainer);
+        
     }
 
 
@@ -53,14 +56,15 @@ function HomePage() {
                         Card Game Sim
                     </h1>
                 </div>
-                <div className='logInOut self-center mr-3 invisible lg:visible'>
+                <div className='logInOut self-center mr-3 visible'>
+                    
                     {user ? <LogOut/> : <SignIn/>}
                 </div>
             </div>
 
             <div className='contentContainer flex flex-row  space-x-4 justify-center mt-3 ml-5 mr-5 h-5/6'>
                 
-                <div className='usersSearchContainer bg-white rounded-lg border flex-shrink flex-grow shadow-xl pl-2 pr-2 w-full lg:bg-blue-2004 lg:w-1/3'>
+                <div className='usersSearchContainer bg-white rounded-lg border shadow-xl pl-2 pr-2 w-full lg:bg-blue-2004 lg:w-1/3'>
                     <div className="searchBar flex flex-col flex-1">
                         <div className='userHeader text-2xl p-3 flex justify-between w-full'>
                             <h2>
@@ -78,20 +82,23 @@ function HomePage() {
                     </div>
 
                     <div className="userListContainer flex border justify-center align-middle h-5/6 w-full">
-                        This is a list of users currently active
+                        <OtherUsers/>
                     </div>
 
                 </div>
 
-                <div className='flex absolute bottom-3 right-5 bg-sky-400 rounded-full h-16 w-16 shadow-lg justify-center align-middle lg:invisible'>
+                <div className='flex absolute bottom-1 right-5 bg-sky-400 rounded-full h-14 w-14 shadow-lg justify-center align-middle lg:invisible'>
                     <button onClick={toggleImage}>
-                        {chat ? <img src={messageIcon}/> : <img src={closeIcon}/>}  
-                        
+                        {chat ? <img src={messageIcon}/> : <img src={closeIcon}/>}     
                     </button>
                     
                 </div>
+                
+                <div className={`absolute h-5/6 w-full ${chatContainer ? 'bg-white' : 'invisible'} lg:invisible`}>
+                    {chatContainer && <Chat/>}
+                </div>
 
-                <div className='messageContainer flex flex-1 border bg-white h-full w-0 invisible lg:visible lg:w-9/12'>
+                <div className='messageContainer flex flex-1 border bg-white h-full w-0 invisible lg:visible lg:w-11/12'>
                     <Chat/>
                 </div>
             </div>
