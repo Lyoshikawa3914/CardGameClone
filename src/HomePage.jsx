@@ -28,14 +28,11 @@ function HomePage() {
     
     
     const [user] = useAuthState(auth)
+    const{displayName} = auth.currentUser
     console.log(user)
 
     var userName = "Eva"
 
-    // const toggleHamburger = () => {
-    //     setIsImage((prevIsImage) => !prevIsImage)
-        
-    // };
 
     const [chat, setChat] = useState(true);
     const [chatContainer, setChatContainer] = useState(false);
@@ -68,7 +65,7 @@ function HomePage() {
                     <div className="searchBar flex flex-col flex-1">
                         <div className='userHeader text-2xl p-3 flex justify-between w-full'>
                             <h2>
-                                {userName}
+                                {displayName}
                             </h2>
    
                         </div>
