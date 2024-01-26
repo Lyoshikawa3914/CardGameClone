@@ -1,14 +1,28 @@
 import React, { useState } from "react";
+import { signInWithEmailAndPassword } from "firebase/auth";
 import "./LandingPage";
+import { useNavigate, Link } from "react-router-dom";
+import {auth} from "./firebase";
 
 export const Login = (props) => {
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
+    const [err, setErr] = useState(false);
+    const navigate = useNavigate();
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
-        console.log(email);
-    }
+        const userEmail = e.target[0]
+        const userPassword = e.target[1]
+
+        try {
+            await signInWithEmailAndPassword(auth, userEmail, userPassword) 
+            navigate("/")
+        }
+        catch (err){
+            setErr(true);
+        }
+    };
     
     return (
         <div className="flex items-center justify-center h-screen">
@@ -25,7 +39,8 @@ export const Login = (props) => {
                     <button className="mt-10  p-3 w-96 shadow rounded-lg bg-sky-400 text-lg font-bold text-slate-100" type="submit">Log In</button>
                 </form>
 
-                <button className="underline mt-5 pt-20 pb-3 pl-6 pr-6 text-sky-500" onClick={() => props.onFormSwitch('register')}>Already have an account? Register Here.</button>
+                <p className="underline mt-5 pt-20 pb-3 pl-6 pr-6 text-sky-500"><Link to="/register">Don't have an account? Register Here.</Link></p>
+                {err && <span>Something went wrong</span>}
             </div>
         </div>
     )

@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useContext, useState} from 'react';
 import messageIcon from "./images/icons8-message-50.png"
 
 import settingsIcon from "./images/icons8-settings-50.png"
@@ -19,6 +19,7 @@ import { useAuthState } from 'react-firebase-hooks/auth';
 import {addDoc, collection, serverTimestamp} from 'firebase/firestore'
 import SendMessage from './components/SendMessage';
 import OtherUsers from './components/OtherUsers';
+import { AuthContext } from './context/AuthContext';
 
 
 
@@ -27,11 +28,10 @@ function HomePage() {
     const [input, setInput] = useState('');
     
     
-    const [user] = useAuthState(auth)
-    const{displayName} = auth.currentUser
-    console.log(user)
-
-    var userName = "Eva"
+    // const [user] = useAuthState(auth)
+    // const{displayName} = auth.currentUser
+    // console.log(user)
+    const {currentUser} = useContext(AuthContext)
 
 
     const [chat, setChat] = useState(true);
@@ -55,7 +55,8 @@ function HomePage() {
                 </div>
                 <div className='logInOut self-center mr-3 visible'>
                     
-                    {user ? <LogOut/> : <SignIn/>}
+                    {/* {user ? <LogOut/> : <SignIn/>} */}
+                    <LogOut/>
                 </div>
             </div>
 
@@ -65,7 +66,8 @@ function HomePage() {
                     <div className="searchBar flex flex-col flex-1">
                         <div className='userHeader text-2xl p-3 flex justify-between w-full'>
                             <h2>
-                                {displayName}
+                                {/* {displayName} */}
+                                {currentUser.displayName}
                             </h2>
    
                         </div>
